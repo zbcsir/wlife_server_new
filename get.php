@@ -12,9 +12,9 @@ if(isset($_POST['gate'])&&isset($_POST['type'])) {
     $type = $_POST['type'];
     $pdo = connect();
     if ($type == "00") {
-        $sql = "SELECT `type`,`no`,`name`,`state` FROM `device` WHERE `gate`='{$gate}' AND (`type`='04' OR `type`='05' OR `type`='06') ORDER BY `dev_imei`";
+        $sql = "SELECT `type`,`no`,`sign`,`place`,`name`,`state` FROM `device` WHERE `gate`='{$gate}' AND (`type`='04' OR `type`='05' OR `type`='06') ORDER BY `dev_imei`";
     } else {
-        $sql = "SELECT `no`,`name`,`state` FROM `device` WHERE `gate`='{$gate}' AND `type`='{$type}'ORDER BY `dev_imei`";
+        $sql = "SELECT `no`,`sign`,`place`,`name`,`state` FROM `device` WHERE `gate`='{$gate}' AND `type`='{$type}'ORDER BY `dev_imei`";
     }
 
     $stmt = $pdo->query($sql);
