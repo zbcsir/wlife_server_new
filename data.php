@@ -113,7 +113,7 @@ function no_device() {
  * @return mixed
  */
 function get_account($pdo, $mail) {
-    $sql = "SELECT `mail`,`account`.`name`,`imei`,`gate`.`name` FROM `account`,`gate` WHERE `gate_imei`=`gate`.`imei` AND `mail`='{$mail}'";
+    $sql = "SELECT `mail`,`account`.`name`,`imei`,`gate`.`name`, `layout` FROM `account`,`gate` WHERE `gate_imei`=`gate`.`imei` AND `mail`='{$mail}'";
     $stmt = $pdo->query($sql);
     $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $res[0];
