@@ -8,12 +8,13 @@
  */
 require_once 'data.php';
 
-if(isset($_POST['gate']) && isset($_POST['no'])){
-    $gate=$_POST['gate'];
-    $no=$_POST['no'];
+if(isset($_POST['gate']) && isset($_POST['type']) && isset($_POST['no'])){
+    $gate = $_POST['gate'];
+    $type = $_POST['type'];
+    $no = $_POST['no'];
     $pdo=connect();
     $sql="DELETE FROM `device`
-          WHERE `gate`='{$gate}' AND `no`='{$no}'";
+          WHERE `gate`='{$gate}' AND `type`='{$type}' AND `no`='{$no}'";
     $pdo->beginTransaction();
     $stmt = $pdo->query($sql);
     $res = $stmt->rowCount();
