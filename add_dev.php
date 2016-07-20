@@ -7,20 +7,24 @@
  * 添加设备
  */
 require_once 'data.php';
+//TODO place sign
 //require_once 'Easemob.class.php';
 //添加设备到device表
 // http://jlshix.com/zigsys/add_dev.php?gate=4718&dev=66162&no=01&type=0B&name=test&state=----
 if(isset($_POST['gate']) && isset($_POST['dev']) && isset($_POST['no'])
-    && isset($_POST['type']) && isset($_POST['name']) &&isset($_POST['state'])){
+    && isset($_POST['type']) && isset($_POST['sign']) && isset($_POST['place'])
+    && isset($_POST['name']) && isset($_POST['state'])){
     $gate=$_POST['gate'];
     $dev=$_POST['dev'];
     $no=$_POST['no'];
     $type = $_POST['type'];
+    $sign = $_POST['sign'];
+    $place = $_POST['place'];
     $name=$_POST['name'];
     $state = $_POST['state'];
     $pdo=connect();
-    $sql= "INSERT INTO `device`(`gate`,`dev_imei`,`no`, `type`,`name`, `state`)
-                      VALUES('{$gate}', '{$dev}', '{$no}', '{$type}','{$name}', '{$state}')";
+    $sql= "INSERT INTO `device`(`gate`,`dev_imei`,`no`, `type`,`sign`, `place`,`name`, `state`)
+                      VALUES('{$gate}', '{$dev}', '{$no}', '{$type}', '{$sign}', '{$place}','{$name}', '{$state}')";
     $pdo->beginTransaction() ;//启动事务处理
     $stat = $pdo->query($sql) ;
     $count = $stat->rowCount() ;
