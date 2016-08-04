@@ -1,37 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="LiangIP" uploadOnCheckin="db4bc900-fadd-461c-af8d-227f98768266">
+  <component name="PublishConfigData" autoUpload="On explicit save action" serverName="wlife" uploadOnCheckin="db572efc-0e4f-4ebb-8eec-e127415c40e9">
     <serverData>
-      <paths name="LiangIP">
+      <paths name="wlife">
         <serverdata>
           <mappings>
-            <mapping deploy="/opt/lampp/htdocs/wlife2" local="$PROJECT_DIR$" web="wlife2" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="jlshix">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="jlshix.com">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="z.leoshi.me">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping local="" />
           </mappings>
         </serverdata>
       </paths>
     </serverData>
-    <option name="myUploadOnCheckinName" value="LiangIP" />
+    <option name="myUploadOnCheckinName" value="wlife" />
     <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
   </component>
 </project>

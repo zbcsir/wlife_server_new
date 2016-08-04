@@ -8,6 +8,12 @@
  */
 
 require_once 'data.php';
+include_once('Easemob.class.php');
+$options['client_id']="YXA6jhnjUPTZEeW5mTkx4owsGg";
+$options['client_secret']="YXA6e1xOW6_1R3ws9nEYAIITtiZXwqk";
+$options['org_name']="wlife";
+$options['app_name']="wlife";
+$easemob=new Easemob($options);
 error_reporting(E_ALL^E_NOTICE);
 if(isset($_POST['mail']) && isset($_POST['name']) && isset($_POST['pw'])) {
     //密码是否一致在客户端完成检测
@@ -22,8 +28,21 @@ if(isset($_POST['mail']) && isset($_POST['name']) && isset($_POST['pw'])) {
     $stmt = $pdo->query($sql);
     $res = $stmt->rowCount();
     if ($res == 1) {
-        $pdo->commit();
-        echo success();
+        $account['username']=$name ;
+        $account['password']=$_POST['pw'];
+        //这里处理自己服务器注册的流程
+        //自己服务器注册成功后向环信服务器注册
+        $result=$easemob->accreditRegister($account);
+        $reg = json_decode($result, true);
+//        echo $result;
+        // TODO 检错 rowCount
+        if ($reg['status'] == 200) {
+            $pdo->commit();
+            echo success();
+        } else {
+            $pdo->rollBack();
+            echo fail();
+        }
     } else {
         $pdo->rollBack();
         echo fail();

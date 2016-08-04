@@ -12,7 +12,9 @@ if(isset($_POST['mail']) && isset($_POST['pw'])){
     $pdo = connect();
     $mail = $_POST['mail'];
     $pw = sha1($_POST['pw']);
-    $sql = "SELECT * FROM `gate`, `account` WHERE `gate_imei`=`gate`.`imei` AND `mail`='{$mail}'";
+    $sql = "SELECT `account`.`name`, `mail`, `pw`, `gate_imei`, `layout`, `master`
+              FROM `account` LEFT JOIN `gate` ON `gate_imei`=`gate`.`imei`
+              WHERE `mail`='{$mail}'";
     $stmt = $pdo->query($sql);
     $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $rpw = $res[0]['pw'];

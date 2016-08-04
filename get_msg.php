@@ -32,4 +32,6 @@ if(isset($_POST['gate'])&&isset($_POST['type'])) {
         "info" => $dev
     );
     echo json_encode($res);
+} else {
+    echo no_para();
 }

@@ -10,3 +10,21 @@
  * 描述: update account set gate = null where name
  * 返回: 成功返回 success() 失败返回相应错误码与描述 参见data.php
  */
+require_once 'data.php';
+if (isset($_POST['name'])) {
+    $name = $_POST['name'];
+    $pdo = connect();
+    $sql = "UPDATE `account` SET `gate_imei`=NULL WHERE `name`='{$name}'";
+    $pdo->beginTransaction();
+    $stmt = $pdo->query($sql);
+    $res = $stmt->rowCount();
+    if ($res == 1) {
+        $pdo->commit();
+        echo success();
+    } else {
+        $pdo->rollBack();
+        echo fail();
+    }
+} else {
+    echo no_para();
+}
