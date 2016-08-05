@@ -14,7 +14,7 @@ require_once "data.php" ;
 if(isset($_POST['imei']) && isset($_POST['name'])){
     $imei = $_POST['imei'] ;
     $name = $_POST['name'] ;
-    $sql = "UPDATE `gate` SET `name`=$name WHERE imei=$imei" ;
+    $sql = "UPDATE `gate` SET `name`='{$name}' WHERE imei='{$imei}'" ;
     $pdo->beginTransaction() ;
     $stmt = $pdo->query($sql) ;
     $rowCount = $stmt->rowCount() ;

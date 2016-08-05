@@ -16,8 +16,8 @@ if(isset($_POST['name']) && isset($_POST['pw']) && isset($_POST['pwn'])){
     $name = $_POST['name'] ;
     $pw = $_POST['pw'] ;
     $pw_new = $_POST['pwn'] ;
-    $sql_select = "SELECT `pw` FROM `account` WHERE name=$name" ;
-    $sql_update = "UPDATE `account` SET `pw`=$pw_new WHERE name=$name" ;
+    $sql_select = "SELECT `pw` FROM `account` WHERE name='{$name}'" ;
+    $sql_update = "UPDATE `account` SET `pw`='{$pw_new}' WHERE name='{$name}'" ;
     $stmt = $pdo->query($sql_select) ;
     $result = $stmt->fetch() ;
     if($pw == $result['pw']){

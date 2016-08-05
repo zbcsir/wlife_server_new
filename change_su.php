@@ -17,8 +17,8 @@ if(isset($_POST['gate']) && isset($_POST['name']) && isset($_POST['pw']) && isse
     $name = $_POST['name'] ;
     $pw = $_POST['pw'] ;
     $new_name = $_POST['new_name'] ;
-    $sql_select = "SELECT `pw` FROM `account` WHERE name=$name" ;
-    $sql_update = "UPDATE `gate` SET `master`=$new_name WHERE gate=$gate" ;
+    $sql_select = "SELECT `pw` FROM `account` WHERE name='{$name}'" ;
+    $sql_update = "UPDATE `gate` SET `master`='{$new_name}' WHERE gate='{$gate}'" ;
     $stmt = $pdo->query($sql_select) ;
     $result = $stmt->fetch() ;
     if($pw == $result['pw']){

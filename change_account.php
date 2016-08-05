@@ -16,7 +16,7 @@ if(isset($_POST['id']) && isset($_POST['name']) && isset($_POST['mail'])){
     $id = $_POST['id'] ;
     $name = $_POST['name'] ;
     $mail = $_POST['mail'] ;
-    $sql = "UPDATE `account` SET `name`=$name,`mail`=$mail WHERE id=$id" ;
+    $sql = "UPDATE `account` SET `name`='{$name}',`mail`='{$mail}' WHERE id=$id" ;
     $pdo->beginTransaction() ;
     $stmt = $pdo->query($sql) ;
     $rowCount = $stmt->rowCount() ;
