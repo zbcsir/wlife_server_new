@@ -11,13 +11,13 @@
  * 返回:成功返回 success() 失败返回相应错误码与描述 参见data.php
  */
 require_once "data.php" ;
-if(isset($_POST['imei']) && isset($_POST['code']) && isset($_POST['dt'])){
+if(isset($_POST['imei']) && isset($_POST['buildingnum']) && isset($_POST['housenum'])){
     $imei = $_POST['imei'] ;
-    $code = $_POST['code'] ;
-    $dt = $_POST['dt'] ;
+    $buildingnu = $_POST['buildingnum'] ;
+    $housenu = $_POST['housenum'] ;
     $sql_Select = "SELECT * FROM `gate` WHERE imei='{$imei}'" ;
-    $sql_Insert = "INSERT INTO `gate`(`imei`, `code`, `dt`) VALUES ('{$imei}','{$code}','{$dt}')" ;
-    $sql_Update = "UPDATE `gate` SET `code`=$code,`dt`='{$dt}' WHERE imei='{$imei}'" ;
+    $sql_Insert = "INSERT INTO `gate`(`imei`, `buildingImei`, `housenu`) VALUES ('{$imei}','{$buildingnu}','{$housenu}')" ;
+    $sql_Update = "UPDATE `gate` SET `buildingImei`=$buildingnu,`housenu`='{$housenu}' WHERE imei='{$imei}'" ;
     $stmt_Select = $pdo->query($sql_Select) ;
     $rowCount_Select = $stmt_Select->rowCount() ;
     if($rowCount_Select > 0){//有此imei的记录

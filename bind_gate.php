@@ -13,11 +13,14 @@ if(isset($_POST['mail']) && isset($_POST['gate']) && isset($_POST['name'])){
     $name=$_POST['name'];
     $pdo=connect();
     $sql1="UPDATE `account` SET `gate_imei`='{$gate}' WHERE `mail`='{$mail}'";
+    $sql2="UPDATE `gate` SET `name`='{$name}' WHERE `imei`='{$gate}'" ;
     $pdo->beginTransaction();
-    $stmt = $pdo->query($sql1);
-    $res1 = $stmt->rowCount();
+    $stmt1 = $pdo->query($sql1);
+    $stmt2 = $pdo->query($sql2);
+    $res1 = $stmt1->rowCount();
+    $res2 = $stmt2->rowCount();
     // 数据库中网关可存在
-    if ($res1 == 1) {
+    if ($res1 == 1 && $res2 == 1) {
         $pdo->commit();
         echo success();
         }

@@ -28,7 +28,7 @@ if(isset($_POST['mail']) && isset($_POST['name']) && isset($_POST['pw'])) {
     $stmt = $pdo->query($sql);
     $res = $stmt->rowCount();
     if ($res == 1) {
-        $account['username']=$name ;
+        $account['username']=$mail ;
         $account['password']=$_POST['pw'];
         //这里处理自己服务器注册的流程
         //自己服务器注册成功后向环信服务器注册
