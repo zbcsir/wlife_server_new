@@ -4,7 +4,7 @@
  * User: zbc
  * Date: 2016/8/13
  * Time: 20:45
- * 参数：date(日期)，gimei(网关imei)，nodeid节点id
+ * 参数：date(日期)，gimei(网关imei)，nodeid(节点id)
  */
 require_once 'data.php' ;
 if(isset($_POST['date']) && isset($_POST['gimei']) && isset($_POST['nodeid'])){
