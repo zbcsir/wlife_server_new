@@ -42,7 +42,6 @@ function gate_push($tag, $msg) {
     $result = $client->push()
         ->setPlatform('all')
         ->addTag($tag)
-
         ->setMessage($msg)
         ->send();
     return json_encode($result);

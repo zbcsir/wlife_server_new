@@ -18,8 +18,10 @@
  * 参数：orderstr(识别的语音),gate(网关号)
  */
 require_once 'push.php' ;
+require_once 'light_opreate.php' ;
 
 if (isset($_POST['orderstr']) && isset($_POST['gate'])) {
+    $light_operate = new PWMOperate() ;
     $mode_order = array('制冷','制暖','制热','除湿','送风','外出','观影','夜间','睡眠','睡觉','自动','天黑','晚上');
     $mode_action = array('开','关','亮','暗') ;
     $mode_obj = array('窗户','窗帘','空调','客厅灯','卧室灯','客厅的灯','卧室的灯');
@@ -144,12 +146,58 @@ if (isset($_POST['orderstr']) && isset($_POST['gate'])) {
                 case 26:
                     $order = '09020000' ;
                     break ;
+                case 33:
+                    $order = $light_operate->lighter($gate,1) ;
+                    break ;
+                case 34:
+                    $order = $light_operate->lighter($gate,2) ;
+                    break ;
+                case 35:
+                    $order = $light_operate->lighter($gate,1) ;
+                    break ;
+                case 36:
+                    $order = $light_operate->lighter($gate,2) ;
+                    break ;
+                case 43:
+                    $order = $light_operate->darker($gate,1) ;
+                    break ;
+                case 44:
+                    $order = $light_operate->darker($gate,2) ;
+                    break ;
+                case 45:
+                    $order = $light_operate->darker($gate,1) ;
+                    break ;
+                case 46:
+                    $order = $light_operate->darker($gate,2) ;
+                    break ;
             }
         }
     }
     //send order by Jpush
-    app_push($gate,$order) ;
-//    echo $order;
+    gate_push($gate,$order) ;
+    if(substr($order,0,2) == '09'){
+        $light = (int)substr($order,7,1) ;
+        $node = substr($order,2,2) ;
+        $light_operate->updateLight($gate,$node,$light) ;
+    }
+    if($order != '00000000'){
+        $res = array(
+            "code" => "1",
+            "info" => "执行成功",
+            "des" => "order"
+        ) ;
+        $json_res = json_encode($res) ;
+        echo $json_res;
+    }else{
+        $res = array(
+            "code" => "1",
+            "info" => "执行失败",
+            "des" => "order"
+        ) ;
+        $json_res = json_encode($res) ;
+        echo $json_res;
+    }
+
 } else {
     echo 'nothing0';
 }
