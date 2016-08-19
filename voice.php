@@ -174,29 +174,30 @@ if (isset($_POST['orderstr']) && isset($_POST['gate'])) {
         }
     }
     //send order by Jpush
-    gate_push($gate,$order) ;
+
     if(substr($order,0,2) == '09'){
         $light = (int)substr($order,7,1) ;
         $node = substr($order,2,2) ;
         $light_operate->updateLight($gate,$node,$light) ;
     }
     if($order != '00000000'){
+        gate_push($gate,$order) ;
         $res = array(
             "code" => "1",
             "info" => "执行成功",
             "des" => "order"
         ) ;
         $json_res = json_encode($res) ;
-        echo $json_res;
-    }else{
-        $res = array(
-            "code" => "1",
-            "info" => "执行失败",
-            "des" => "order"
-        ) ;
-        $json_res = json_encode($res) ;
-        echo $json_res;
-    }
+    echo $json_res;
+}else{
+    $res = array(
+        "code" => "1",
+        "info" => "执行失败",
+        "des" => "order"
+    ) ;
+    $json_res = json_encode($res) ;
+    echo $json_res;
+}
 
 } else {
     echo 'nothing0';

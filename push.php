@@ -36,12 +36,13 @@ function app_push($tag, $msg) {
  * @return string
  */
 function gate_push($tag, $msg) {
-    $app_key = 'ff8583a9819b1fb8f76e9ba7';
-    $master_secret='abaf37bf3ccb33d7279b8ab3';
+    $app_key = '1096bce02f2116a9797c0daf';
+    $master_secret='3d1796f6b7d452d0599fbc33';
     $client = new JPush($app_key, $master_secret, null);
     $result = $client->push()
         ->setPlatform('all')
-        ->addTag($tag)
+//        ->addTag($tag)
+        ->addAlias($tag)
         ->setMessage($msg)
         ->send();
     return json_encode($result);
