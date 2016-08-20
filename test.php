@@ -38,11 +38,21 @@
 //    echo no_para();
 //}
 
-require_once 'light_opreate.php' ;
-$test = new PWMOperate() ;
-echo $test->lighter('356612040388664',2) ;
-//echo $test->getNodeid('356612040388664',1) ;
-
+//require_once 'light_opreate.php' ;
+//$test = new PWMOperate() ;
+//echo $test->lighter('356612040388664',2) ;
+////echo $test->getNodeid('356612040388664',1) ;
+require_once 'data.php' ;
+$gate = "356612040388664" ;
+$pdo = connect() ;
+$sql = "SELECT `name`,`equal` FROM `orders` WHERE `gate`={$gate}" ;
+$stmt = $pdo->query($sql) ;
+if($stmt->rowCount() > 0){
+    $res = $stmt->fetchAll() ;
+    
+    echo count($res) ;
+//    print_r($res) ;
+}
 
 
 

@@ -15,7 +15,7 @@ if(isset($_POST['buildingnumber']) && isset($_POST['housenumber'])){
     $res_imei = $stmt_imei->fetch() ;
     if($stmt_imei->rowCount() == 1){
         $gimei = $res_imei[0] ;
-        $sql_getPhone = "SELECT `mail` FROM `account` WHERE `gate_imei`={$gimei} AND `online`='1' LIMIT 0,1" ;
+        $sql_getPhone = "SELECT `mail` FROM `account` WHERE `gate_imei`={$gimei} AND `online`=1 LIMIT 0,1" ;
         $stmt_phone = $pdo->query($sql_getPhone) ;
         if($stmt_phone->rowCount() == 1){
             $res_phone = $stmt_phone->fetch() ;
